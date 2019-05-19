@@ -12,7 +12,7 @@ services:
   feedback-ms:
     image:  baangaritar/1e-videos-feedback-ms
     ports:
-      - 3304:3004
+      - 3004:3004
     depends_on:
       - feedback-db
 
