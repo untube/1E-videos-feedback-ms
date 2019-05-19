@@ -1,5 +1,5 @@
 FROM java:8
-EXPOSE 8080
+EXPOSE 3004
 VOLUME /tmp
 ADD target/1E-videos-feedback-ms-0.0.1-SNAPSHOT.jar feedback.jar
 RUN bash -c 'touch /feedback.jar'
