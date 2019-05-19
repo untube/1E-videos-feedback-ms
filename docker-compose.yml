@@ -8,10 +8,12 @@ services:
       MYSQL_ROOT_PASSWORD: '123'
       MYSQL_USER: sa
     ports:
-      - 3306:3306
+      - 3308:3306
   feedback-ms:
     image:  baangaritar/1e-videos-feedback-ms
     ports:
-      - 4000:3004
+      - 3304:3004
     depends_on:
       - feedback-db
+
+#1E-UNTube-application
