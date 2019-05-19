@@ -1,0 +1,17 @@
+version: '2'
+services:
+  feedback-db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: feedback-db
+      MYSQL_PASSWORD: '123'
+      MYSQL_ROOT_PASSWORD: '123'
+      MYSQL_USER: sa
+    ports:
+      - 3306:3306
+  feedback-ms:
+    image:  baangaritar/1e-videos-feedback-ms
+    ports:
+      - 8080:4000
+    depends_on:
+      - feedback-db
