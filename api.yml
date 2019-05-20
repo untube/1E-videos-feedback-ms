@@ -1,0 +1,197 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice for Feedback on UNTube Application
+  description: Java + MySQL
+  license:
+    name: Software Architecture, 2019-I
+host: feedback-ms:3002
+basePath: /feedback/resources
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /commentaries:
+    post:
+      summary: Creates a new commentary
+      operationId: CreateCommentary
+      parameters:
+        - name: commentary
+          in: body
+          required: true
+          description: Commentary Object
+          schema:
+            $ref: '#/definitions/CommentaryInput'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      summary: Returns all commentaries
+      operationId: FindAllCommentaries
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/CommentariesList'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /commentaries/{id}:
+    get:
+      summary: Returns a Commentary with the given id
+      operationId: FindCommentaryById
+      parameters:
+        - name: id
+          in: path
+          description: The id of the commentary to be returned
+          required: true
+          type: long
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Commentary'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    put:
+      summary: Updates a commentary with the given id
+      operationId: UpdateCommentary
+      parameters:
+        - name: id
+          in: path
+          description: The id of the commentary to be updated
+          required: true
+          type: long
+        - name: commentary
+          in: body
+          required: true
+          description: Commentary Object
+          schema:
+            $ref: '#/definitions/CommentaryInput'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    delete:
+      summary: Deletes a commentary with the given id
+      operationId: deleteCommentary
+      parameters:
+        - name: id
+          in: path
+          description: The id of the commentary to be deleted
+          required: true
+          type: long
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'            
+
+definitions:
+
+  # Commentaries
+  Commentary:
+    type: object
+    properties:
+      id:
+        type: long
+      subject:
+        type: string
+      created_at:
+        type: date
+      updated_at:
+        type: date
+      id_video:
+        type: string
+      likes:
+        type: integer
+      description:
+        type: string
+      id_user:
+        type: integer
+
+  CommentaryInput:
+    type: object
+    properties:
+      subject:
+        type: string
+      description:
+        type: string
+
+  CommentaryList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Commentary'
+# Errors
+  ErrorModel:
+    type: object
+    required:
+      - message
+      - id
+    properties:
+      message:
+        type: string
+      id:
+        type: number
+      description:
+        type: object

@@ -40,18 +40,22 @@ public class Commentary {
     @Column(name="description", nullable=false)
     private String description;
 
+    @Column(name="id_user", nullable=false)
+    private Integer id_user;
+
 
     public Commentary() {
 
     }
 
-    public Commentary(Long id, String subject, Date created_at, Date updated_at, Long id_video, Integer likes) {
-        this.id = id;
+    public Commentary(String subject, Long id_video, String description, Integer id_user) {
         this.subject = subject;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.created_at = new Date();
+        this.updated_at = new Date();
         this.id_video = id_video;
-        this.likes = likes;
+        this.likes = 0;
+        this.description = description;
+        this.id_user = id_user;
     }
 
     public Long getId() {

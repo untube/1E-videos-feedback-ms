@@ -42,16 +42,19 @@ public class CommentaryController {
     
     @PostMapping("/commentaries/")
     public Commentary createCommentary(@Valid @RequestBody Commentary commentary) {
+        commentary.setCreated_at(new Date());
+        commentary.setUpdated_at(new Date());
+        commentary.setLikes(0);
         return commentaryRepository.save(commentary);
     } 
 
     @PutMapping("/commentaries/{id}")
     public ResponseEntity<Commentary> updateCommentary(@PathVariable(value="id") Long commentaryId, @Valid @RequestBody Commentary toUpdateCommentary) throws ResourceNotFoundException {
         Commentary commentary = commentaryRepository.findById(commentaryId).orElseThrow(() -> new ResourceNotFoundException("Commentary not found at :: " + commentaryId));
-        commentary.setCreated_at(toUpdateCommentary.getCreated_at());
         commentary.setUpdated_at(new Date());
         commentary.setSubject(toUpdateCommentary.getSubject());
         commentary.setDescription(toUpdateCommentary.getDescription());
+        commentary.setLikes(toUpdateCommentary.getLikes());
         final Commentary updatedCommentary = commentaryRepository.save(commentary);
         return ResponseEntity.ok(updatedCommentary);
     }
