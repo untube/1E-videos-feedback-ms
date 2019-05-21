@@ -25,10 +25,10 @@ public class Commentary {
     @Column(name="subject", nullable = false)
     private String subject;
 
-    @Column(name="create_at", nullable = true)
+    @Column(name="create_at", nullable = false)
     private Date created_at;
 
-    @Column(name="updated_at", nullable = true)
+    @Column(name="updated_at", nullable = false)
     private Date updated_at;
 
     @Column(name="id_video", nullable=false) 
