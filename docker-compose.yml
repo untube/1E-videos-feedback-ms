@@ -18,12 +18,12 @@ services:
   untube-api:
     image: baangaritar/1e-videos-api-gateway
     environment:
-      COURSES_ENTRY: feedback/resources/commentaries
-      COURSES_PORT: '3004'
-      COURSES_URL: 35.231.49.108
+      COMMENTARIES_ENTRY: feedback/resources/commentaries
+      COMMENTARIES_PORT: '3004'
+      COMMENTARIES_URL: 35.231.49.108
       PORT: '5000'
       SHOW_URLS: 'true'
     ports:
-    - 5000:5000/tcp
+    - 5000:5000
 
 #1E-UNTube-application
