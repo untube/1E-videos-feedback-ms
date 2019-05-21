@@ -40,10 +40,10 @@ public class CommentaryController {
         return ResponseEntity.ok().body(commentary);
     }
     
-    @PostMapping("/commentaries/")
+    @PostMapping("/commentaries")
     public Commentary createCommentary(@Valid @RequestBody Commentary commentary) {
         commentary.setCreated_at(new Date());
-        commentary.setUpdated_at(new Date());
+        commentary.setUpdated_at(new Date()); 
         commentary.setLikes(0);
         return commentaryRepository.save(commentary);
     } 

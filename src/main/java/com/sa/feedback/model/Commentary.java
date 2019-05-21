@@ -25,14 +25,14 @@ public class Commentary {
     @Column(name="subject", nullable = false)
     private String subject;
 
-    @Column(name="create_at", nullable = false)
+    @Column(name="create_at", nullable = true)
     private Date created_at;
 
-    @Column(name="updated_at", nullable = false)
+    @Column(name="updated_at", nullable = true)
     private Date updated_at;
 
     @Column(name="id_video", nullable=false) 
-    private Long id_video;
+    private String id_video;
     
     @Column(name="likes", nullable = true) 
     private Integer likes;
@@ -48,7 +48,7 @@ public class Commentary {
 
     }
 
-    public Commentary(String subject, Long id_video, String description, Integer id_user) {
+    public Commentary(String subject, String id_video, String description, Integer id_user) {
         this.subject = subject;
         this.created_at = new Date();
         this.updated_at = new Date();
@@ -90,11 +90,11 @@ public class Commentary {
         this.updated_at = updated_at;
     }
 
-    public Long getId_video() {
+    public String getId_video() {
         return this.id_video;
     }
 
-    public void setId_video(Long id_video) {
+    public void setId_video(String id_video) {
         this.id_video = id_video;
     }
 
@@ -112,6 +112,15 @@ public class Commentary {
 
 	public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getId_user(){
+        return this.id_user;
+    }
+
+    
+    public void setId_user(Integer id_user) {
+        this.id_user = id_user;
     }
 
 
