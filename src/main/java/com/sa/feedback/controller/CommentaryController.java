@@ -39,6 +39,11 @@ public class CommentaryController {
         Commentary commentary = commentaryRepository.findById(commentaryId).orElseThrow(() -> new ResourceNotFoundException("Commentary not found on ::" + commentaryId));
         return ResponseEntity.ok().body(commentary);
     }
+
+    @GetMapping("/commentaries/{id_video}")
+    public List<Commentary> getCommentariesByVideo(@PathVariable(value="id_video") String id_video) throws ResourceNotFoundException {
+        return this.commentaryRepository.findById_video(id_video);
+    }
     
     @PostMapping("/commentaries")
     public Commentary createCommentary(@Valid @RequestBody Commentary commentary) {
