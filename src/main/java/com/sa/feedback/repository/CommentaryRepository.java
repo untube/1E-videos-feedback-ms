@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CommentaryRepository extends JpaRepository<Commentary, Long> {
-    List<Commentary> findById_video(String id_video);
+    List<Commentary> findByIdVideo(String idVideo);
 }

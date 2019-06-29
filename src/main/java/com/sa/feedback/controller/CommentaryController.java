@@ -40,15 +40,15 @@ public class CommentaryController {
         return ResponseEntity.ok().body(commentary);
     }
 
-    @GetMapping(value = "/commentaries/{id_video}")
-    public List<Commentary> getCommentariesByVideo(@PathVariable(value="id_video") String id_video) throws ResourceNotFoundException {
-        return this.commentaryRepository.findById_video(id_video);
+    @GetMapping(value = "/commentaries/{idVideo}")
+    public List<Commentary> getCommentariesByIdVideo(@PathVariable(value="idVideo") String idVideo) throws ResourceNotFoundException {
+        return this.commentaryRepository.findByIdVideo(idVideo);
     }
     
     @PostMapping("/commentaries")
     public Commentary createCommentary(@Valid @RequestBody Commentary commentary) {
-        commentary.setCreated_at(new Date());
-        commentary.setUpdated_at(new Date()); 
+        commentary.setCreatedAt(new Date());
+        commentary.setUpdatedAt(new Date()); 
         commentary.setLikes(0);
         return commentaryRepository.save(commentary);
     } 
@@ -56,7 +56,7 @@ public class CommentaryController {
     @PutMapping("/commentaries/{id}")
     public ResponseEntity<Commentary> updateCommentary(@PathVariable(value="id") Long commentaryId, @Valid @RequestBody Commentary toUpdateCommentary) throws ResourceNotFoundException {
         Commentary commentary = commentaryRepository.findById(commentaryId).orElseThrow(() -> new ResourceNotFoundException("Commentary not found at :: " + commentaryId));
-        commentary.setUpdated_at(new Date());
+        commentary.setUpdatedAt(new Date());
         commentary.setSubject(toUpdateCommentary.getSubject());
         commentary.setDescription(toUpdateCommentary.getDescription());
         commentary.setLikes(toUpdateCommentary.getLikes());
