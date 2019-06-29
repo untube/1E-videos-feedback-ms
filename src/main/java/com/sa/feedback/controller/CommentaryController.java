@@ -34,13 +34,13 @@ public class CommentaryController {
         return this.commentaryRepository.findAll();
     }
 
-    @GetMapping("/commentaries/{id}")
+    @GetMapping(value = "/commentaries/{id}")
     public ResponseEntity<Commentary> getCommentaryById(@PathVariable(value= "id") Long commentaryId) throws ResourceNotFoundException{
         Commentary commentary = commentaryRepository.findById(commentaryId).orElseThrow(() -> new ResourceNotFoundException("Commentary not found on ::" + commentaryId));
         return ResponseEntity.ok().body(commentary);
     }
 
-    @GetMapping("/commentaries/video/{id_video}")
+    @GetMapping(value = "/commentaries/{id_video}")
     public List<Commentary> getCommentariesByVideo(@PathVariable(value="id_video") String id_video) throws ResourceNotFoundException {
         return this.commentaryRepository.findById_video(id_video);
     }
