@@ -25,13 +25,13 @@ public class Commentary {
     @Column(name="subject", nullable = false)
     private String subject;
 
-    @Column(name="createdAt", nullable = false)
+    @Column(name="created_at", nullable = false)
     private Date createdAt;
 
-    @Column(name="updatedAt", nullable = false)
+    @Column(name="updated_at", nullable = false)
     private Date updatedAt;
 
-    @Column(name="idVideo", nullable=false) 
+    @Column(name="id_video", nullable=false) 
     private String idVideo;
     
     @Column(name="likes", nullable = true) 
@@ -40,7 +40,7 @@ public class Commentary {
     @Column(name="description", nullable=false)
     private String description;
 
-    @Column(name="idUser", nullable=false)
+    @Column(name="id_user", nullable=false)
     private Integer idUser;
 
 
