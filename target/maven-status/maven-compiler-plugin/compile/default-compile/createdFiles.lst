@@ -1,7 +1,0 @@
-com/sa/feedback/repository/CommentaryRepository.class
-com/sa/feedback/exception/ResourceNotFoundException.class
-com/sa/feedback/exception/ErrorResponse.class
-com/sa/feedback/controller/CommentaryController.class
-com/sa/feedback/Application.class
-com/sa/feedback/model/Commentary.class
-com/sa/feedback/exception/GlobalExceptionHandler.class
