@@ -13,38 +13,40 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
-
 @Entity
 @Table(name="commentary")
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
+        allowGetters = true)
 public class Commentary {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="subject", nullable = false)
+    @NotBlank
     private String subject;
 
-    @Column(name="createdAt", nullable = false)
-    private Date createdAt;
-
-    @Column(name="updatedAt", nullable = false)
-    private Date updatedAt;
-
-    @Column(name="idVideo", nullable=false) 
+    @NotBlank
+    private String description;
+    
+    @NotBlank
     private String idVideo;
     
-    @Column(name="likes", nullable = true) 
-    private Integer likes;
-
-    @Column(name="description", nullable=false)
-    private String description;
-
-    @Column(name="idUser", nullable=false)
+    @NotBlank
     private Integer idUser;
+    
+    @Column(name="likes", nullable = true) 
+    private Integer likes;   
 
+    @Column(nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createdAt;
 
-    public Commentary() {
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Date updatedAt;
 
     }
 
@@ -122,4 +124,5 @@ public class Commentary {
     public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
+
 }
