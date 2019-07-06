@@ -40,7 +40,8 @@ public class CommentaryController {
         return ResponseEntity.ok().body(commentary);
     }
 
-    @GetMapping(value = "/commentaries/{idVideo}")
+
+    @GetMapping(value = "/commentariesByVideo/{idVideo}")
     public List<Commentary> getCommentariesByIdVideo(@PathVariable(value="idVideo") String idVideo) throws ResourceNotFoundException {
         return this.commentaryRepository.findByIdVideo(idVideo);
     }
