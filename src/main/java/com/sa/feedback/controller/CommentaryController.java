@@ -45,10 +45,9 @@ public class CommentaryController {
         return this.commentaryRepository.findByIdVideo(idVideo);
     }
     
-    @PostMapping("/commentaries")
+    @PostMapping(value="/commentaries")
     public Commentary createCommentary(@Valid @RequestBody Commentary commentary) {
-        commentary.setCreatedAt(new Date());
-        commentary.setUpdatedAt(new Date()); 
+        System.out.println(commentary);
         commentary.setLikes(0);
         return commentaryRepository.save(commentary);
     } 
