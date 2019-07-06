@@ -1,16 +1,15 @@
 package com.sa.feedback.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @Entity
@@ -47,18 +46,6 @@ public class Commentary {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
-
-    }
-
-    public Commentary(String subject, String idVideo, String description, Integer idUser) {
-        this.subject = subject;
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-        this.idVideo = idVideo;
-        this.likes = 0;
-        this.description = description;
-        this.idUser = idUser;
-    }
 
     public Long getId() {
         return this.id;
@@ -108,19 +95,18 @@ public class Commentary {
         this.likes = likes;
     }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public Integer getIdUser(){
+    public Integer getIdUser() {
         return this.idUser;
     }
 
-    
     public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
