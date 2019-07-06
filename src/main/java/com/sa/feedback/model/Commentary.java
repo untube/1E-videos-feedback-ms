@@ -44,8 +44,19 @@ public class Commentary {
     private Integer idUser;
 
 
+    public Commentary() {
 
+    }
 
+    public Commentary(String subject, String idVideo, String description, Integer idUser) {
+        this.subject = subject;
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
+        this.idVideo = idVideo;
+        this.likes = 0;
+        this.description = description;
+        this.idUser = idUser;
+    }
 
     public Long getId() {
         return this.id;
@@ -95,20 +106,20 @@ public class Commentary {
         this.likes = likes;
     }
 
-    public String getDescription() {
-        return this.description;
-    }
+	public String getDescription() {
+		return this.description;
+	}
 
-    public void setDescription(String description) {
+	public void setDescription(String description) {
         this.description = description;
     }
 
-    public Integer getIdUser() {
+    public Integer getIdUser(){
         return this.idUser;
     }
 
+    
     public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
-
 }
